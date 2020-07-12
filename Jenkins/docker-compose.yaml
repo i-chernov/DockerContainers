@@ -1,0 +1,23 @@
+version: "3.7"
+
+# Получение секретного ключа: docker-compose exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
+
+services:
+    jenkins-server:
+        image: jenkins/jenkins:lts
+        container_name: jenkins-main
+        hostname: jenkins-main
+        # user: root
+        privileged: true
+        ports:
+            - "8080:8080" # Сайт http
+            - "50000:5000" # Управление агентами
+        volumes:
+            - config:/var/jenkins_home # Файлы конфигурации
+            - ~/Source:/source # Файлы исходных кодов
+            # Проброс docker внутрь контейнера
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/bin/docker:/usr/bin/docker
+
+volumes:
+    config:
