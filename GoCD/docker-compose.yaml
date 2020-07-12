@@ -1,0 +1,24 @@
+version: "3.7"
+
+# САЙТ: https://hub.docker.com/r/gocd/gocd-server
+# Создать и запустить контейнер: docker-compose up -d
+# Остановить и удалить контейнер, сети, образ, тома: docker-compose down --rmi all -v
+
+services:
+    gocd-server:
+        container_name: gocd-server
+        image: gocd/gocd-server:v20.5.0
+        ports:
+            - 8153:8153 # Сайт http
+        # Аналог docker volume create
+        volumes:
+            - godata:/godata # Файлы конфигурации
+            - home:/home/go  # Домашня папка
+
+volumes:
+    godata:
+        name: gocd-godata
+        driver_opts: 
+            type: volume
+            device: volume
+    home:
