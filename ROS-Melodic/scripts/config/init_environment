@@ -1,0 +1,22 @@
+# Ros setup
+source /opt/ros/melodic/setup.bash
+
+# Catkin setup
+CATKIN_DIR="${HOME}/catkin_ws"
+[ ! -d ${CATKIN_DIR}/src ] && mkdir -p ${CATKIN_DIR}/src
+
+cd ${CATKIN_DIR}
+
+[ ! -f ${CATKIN_DIR}/devel/setup.bash ] && catkin_make
+source ${CATKIN_DIR}/devel/setup.bash
+
+# init and update rosdep
+function ros_update {
+    sudo rosdep init
+    sudo rosdep update
+}
+
+clear
+
+echo "Welcome to ROS Docker Image!"
+echo "Run ros_update for first start"

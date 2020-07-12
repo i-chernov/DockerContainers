@@ -1,0 +1,14 @@
+BLACK='\e[0;30m'        # Black
+RED='\e[0;31m'          # Red
+GREEN='\e[0;32m'        # Green
+YELLOW='\e[0;33m'       # Yellow
+BLUE='\e[0;34m'         # Blue
+
+WHITE="\e[0;37m"       # White
+RESET="\e[0m"
+
+PS1="${BLUE}\h: \W${GREEN}> ${YELLOW}"
+
+# Reset color after input command
+trap 'printf "\e[0m" "$_"' DEBUG
+
