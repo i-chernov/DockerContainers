@@ -11,7 +11,7 @@ services:
         privileged: true
         ports:
             - "8080:8080" # Сайт http
-            - "50000:5000" # Управление агентами
+            - "50000:50000" # Управление агентами
         volumes:
             - config:/var/jenkins_home # Файлы конфигурации
             - ~/Source:/source # Файлы исходных кодов
